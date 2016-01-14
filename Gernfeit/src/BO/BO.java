@@ -43,7 +43,39 @@ public class BO {
         return gern;
     }
     
-    public TO consultarID(TO to) throws Exception {
-        
+    public TO consultarID(String id) throws Exception {
+        DAO dao = new DAO();
+        TO to = dao.consultaID(id);
+        return to;
+    }
+    
+    public void excluirID(String id) throws Exception {
+        DAO dao = new DAO();
+        dao.excluirID(id);
+    }
+    
+    private String consisteDados(TO to){
+        if(to.getNum_nfe().equals("")){
+            return "Numero da nota não informado!!";
+        }
+        if(to.getMod_nfece().equals("")){
+            return "Modelo da nota não informado!!";
+        }
+        if(to.getDes_prod().equals("")){
+            return "Descrição do produto não informado!!";
+        }
+        if(to.getQtde_prod()<0){
+            return "Quantidade de produto invalida";
+        }
+        if(to.getVal_unit()<0){
+            return "Valor da unidade do produto invalida";
+        }
+        if(to.getVal_desc()<0){
+            return "Valor do desconto do produto invalido";
+        }
+        if(to.getVal_total()<0){
+            return "Total invalido";
+        }
+        return "";
     }
 }

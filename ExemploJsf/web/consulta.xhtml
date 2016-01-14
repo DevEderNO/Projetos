@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Consulta Clientes</title>
+    </h:head>
+    <body>
+        <h:form id="consulta">
+            <h1>Consulta Cliente</h1>
+            <p:dataTable emptyMessage="Não existem clientes cadastrados" id="Tabela" var="item" value="#{ctrlCliente.clientes}" style="border:solid 1px">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome" />
+                    </f:facet>
+                    <h:outputText value="#{item.nome}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Endereço" />
+                    </f:facet>
+                    <h:outputText value="#{item.endereco}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Telefone" />
+                    </f:facet>
+                    <h:outputText value="#{item.telefone}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações"/>
+                    </f:facet>
+                    <p:commandButton onclick="PF('dlg').show();"  value="Excluir">
+                        <f:setPropertyActionListener value="#{item}" target="#{ctrlCliente.clienteTo}"/>
+                    </p:commandButton>
+                    <p:commandButton  action="#{ctrlCliente.editar()}" ajax="false"  value="Alterar">
+                        <f:setPropertyActionListener value="#{item}" target="#{ctrlCliente.clienteTo}"/>
+                    </p:commandButton>
+                    <h:outputText value=" "/>
+                </p:column>
+            </p:dataTable>
+
+            <p:commandButton id="BtnVoltar" ajax="false" immediate="true" action="#{ctrlCliente.voltar()}" value="Voltar"/>
+
+            <p:dialog id="dlg" header="Exclusão" widgetVar="dlg" resizable="false">  
+                <h:panelGrid columns="2" cellpadding="5">  
+                    <h:outputLabel value="Confirma a Exclusão deste Cliente?" />  
+                    <f:facet name="footer">  
+                        <p:commandButton type="button" onclick="PF('dlg').hide();" id="btnCancela" value="Cancelar" />
+                        <p:commandButton ajax="false" id="btnResp" value="OK" 
+                                         action="#{ctrlCliente.excluir()}"   
+                                         oncomplete="PF('dlg').hide();"/>  
+                    </f:facet>  
+                </h:panelGrid>  
+            </p:dialog>  
+        </h:form>
+    </body>
+</html>

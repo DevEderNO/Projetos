@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Cadastro de Clientes</title>
+    </h:head>
+    <body>
+
+        <h:form id="FrmCadAluno" >
+            <h2>Cadastro de Clientes</h2>
+            <p:messages id="mens" />
+            <h:panelGrid columns="2">
+                <h:outputText value="Nome:"/>
+                <p:inputText value="#{ctrlCliente.clienteTo.nome}" required="true" requiredMessage="Informe o Nome do Cliente" id="TxtNome" size="70" maxlength="60"/>
+                <h:outputText value="Telefone:"/>
+                <p:inputMask mask="(99) 9999-9999" required="true" requiredMessage="Informe o Telefone do Cliente" value="#{ctrlCliente.clienteTo.telefone}" id="TxtTelefone" size="20" maxlength="20"/>
+                <h:outputText value="Endereço:"/>
+                <p:inputText required="true" requiredMessage="Informe o endereço do cliente" value="#{ctrlCliente.clienteTo.endereco}" id="TxtEndereco" size="100" maxlength="100"/>
+            </h:panelGrid>
+            <p:commandButton update="mens,FrmCadAluno" action="#{ctrlCliente.manter}" id="BtnIncluir" value="#{ctrlCliente.labelBotao}"/>
+            <p:commandButton id="BtnConsultar" value="Consultar" immediate="true" ajax="false" action="#{ctrlCliente.consultarTodos}"/>
+        </h:form>
+    </body>
+</html>

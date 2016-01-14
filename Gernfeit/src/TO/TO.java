@@ -12,7 +12,6 @@ import java.io.File;
  * @author suporte06
  */
 public class TO {
-    private File arquivo;
     private String num_nfe;
     private String mod_nfece;
     private String des_prod;
@@ -22,7 +21,7 @@ public class TO {
     private double val_total;
 
     public TO() {
-        this.arquivo = null;
+       
         this.num_nfe = "";
         this.mod_nfece = "";
         this.des_prod = "";
@@ -30,14 +29,6 @@ public class TO {
         this.val_unit = 0;
         this.val_desc = 0;
         this.val_total = 0;
-    }
-
-    public File getArquivo() {
-        return arquivo;
-    }
-
-    public void setArquivo(File arquivo) {
-        this.arquivo = arquivo;
     }
 
     public String getNum_nfe() {
